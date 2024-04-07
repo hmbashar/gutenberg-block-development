@@ -11,9 +11,13 @@ import { __ } from "@wordpress/i18n";
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockprops
  */
-import { useBlockProps, BlockControls } from "@wordpress/block-editor";
+import {
+	useBlockProps,
+	BlockControls,
+	PlainText,
+} from "@wordpress/block-editor";
 import { Fragment } from "@wordpress/element";
-import {ToolbarButton, ToolbarGroup} from "@wordpress/components";
+import { ToolbarButton, ToolbarGroup } from "@wordpress/components";
 
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
@@ -31,7 +35,8 @@ import "./editor.scss";
  *
  * @return {Element} Element to render.
  */
-export default function Edit() {
+export default function Edit({ className, attributes, setAttributes }) {
+	const { content } = attributes;
 	return (
 		<Fragment>
 			<BlockControls>
@@ -63,6 +68,12 @@ export default function Edit() {
 			<p {...useBlockProps()}>
 				{__("Cb Hello Block – hello from the editor!", "cb-my-block")}
 			</p>
+			<PlainText
+				{...useBlockProps()}
+				value={content} 
+				onChange={(newContent) => setAttributes({ content: newContent })} 
+				placeholder={__("Type here...", "cb-my-block")} 
+			/>
 		</Fragment>
 	);
 }

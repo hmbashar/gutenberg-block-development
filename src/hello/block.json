@@ -3,12 +3,17 @@
 	"apiVersion": 3,
 	"name": "create-block/hello",
 	"version": "0.1.0",
-	"title": "Cb Hello",
+	"title": "CB Hello",
 	"category": "widgets",	
 	"description": "Example block scaffolded with Create Block tool.",
 	"example": {},
 	"supports": {
-		"html": false
+		"html": true,
+		"color": {
+			"text": true,
+			"link": true,
+			"background": true
+		}
 	},
 	"styles": [
 		{
@@ -17,7 +22,7 @@
 			"isDefault": true
 		},
 		{
-			"name": "green",
+			"name": "green-amar",
 			"label": "Green"
 		},
 		{
@@ -45,5 +50,16 @@
 	"editorScript": "file:./index.js",
 	"editorStyle": "file:./index.css",
 	"style": "file:./style-index.css",
-	"viewScript": "file:./view.js"
+	"viewScript": "file:./view.js",
+	"attributes": {		
+		"content": {
+			"type": "string",
+			"default": ""
+		},
+		"style":{
+			"type": "string",
+			"default": "red"
+		}
+		
+	}
 }
