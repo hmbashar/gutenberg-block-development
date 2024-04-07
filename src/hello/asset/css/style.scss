@@ -1,0 +1,44 @@
+/**
+ * The following styles get applied both on the front of your site
+ * and in the editor.
+ *
+ * Replace them with your own styles or remove the file completely.
+ */
+
+.wp-block-create-block-cb-my-block {
+	background-color: #21759b;
+	color: #fff;
+	padding: 2px;
+}
+
+.cb-my-block-red, .is-style-red {
+    color: #f00;
+}
+
+.cb-my-block-green, .is-style-green {
+    color: #0f0;
+}
+
+.cb-my-block-blue, .is-style-blue {
+    color: #00f;
+}
+
+.cb-my-block-yellow, .is-style-yellow {
+    color: #ff0;
+}
+
+.cb-my-block-purple, .is-style-purple {
+    color: #f0f;
+}
+
+.cb-my-block-pink, .is-style-pink {
+    color: #f0f;
+}
+
+.cb-my-block-orange, .is-style-orange {
+    color: #f0f;
+}
+
+.cb-my-block-black, .is-style-black {
+    color: #000;
+}

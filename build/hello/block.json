@@ -10,6 +10,37 @@
   "supports": {
     "html": false
   },
+  "styles": [
+    {
+      "name": "red",
+      "label": "Red",
+      "isDefault": true
+    },
+    {
+      "name": "green",
+      "label": "Green"
+    },
+    {
+      "name": "blue",
+      "label": "Blue"
+    },
+    {
+      "name": "yellow",
+      "label": "Yellow"
+    },
+    {
+      "name": "purple",
+      "label": "Purple"
+    },
+    {
+      "name": "pink",
+      "label": "Pink"
+    },
+    {
+      "name": "orange",
+      "label": "Orange"
+    }
+  ],
   "textdomain": "cb-my-block",
   "editorScript": "file:./index.js",
   "editorStyle": "file:./index.css",
