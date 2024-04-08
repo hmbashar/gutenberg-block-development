@@ -16,33 +16,47 @@ import {
 	BlockControls,
 	PlainText,
 	RichText,
-	InspectorControls
+	InspectorControls,
+	MediaUpload,
+	MediaUploadCheck,
 } from "@wordpress/block-editor";
 import { Fragment } from "@wordpress/element";
-import { ToolbarButton, ToolbarGroup, PanelBody, SelectControl } from "@wordpress/components"; 
+import {
+	ToolbarButton,
+	ToolbarGroup,
+	PanelBody,
+	SelectControl,
+	Button,
+	IconButton,
+} from "@wordpress/components";
 import "./editor.scss";
 
-
+const ALLOWED_MEDIA_TYPES = ["image"];
 export default function Edit({
 	className,
 	attributes,
 	setAttributes,
 	isSelected,
 }) {
-	const { plainTextContent, richTextContent,type } = attributes;
+	const { plainTextContent, richTextContent, type, id, src, alt } = attributes;
 	return (
 		<Fragment>
 			<InspectorControls>
-				<PanelBody title={__("Settings", "cb-my-block")} initialOpen={true}>
-					<SelectControl 
+				<PanelBody
+					title={__("Font Settings", "cb-my-block")}
+					initialOpen={true}
+				>
+					<SelectControl
 						label={__("Select", "cb-my-block")}
 						value={type}
 						options={[
 							{ label: "Small", value: "25%" },
 							{ label: "Medium", value: "50%" },
-							{ label: "Large", value: "100%" },													
+							{ label: "Large", value: "100%" },
 						]}
-						onChange={(type) => { setAttributes( { type } ) }}
+						onChange={(type) => {
+							setAttributes({ type });
+						}}
 					/>
 				</PanelBody>
 			</InspectorControls>
@@ -78,20 +92,48 @@ export default function Edit({
 				<PlainText
 					{...useBlockProps()}
 					value={plainTextContent}
-					onChange={(newPlainTextContent) => setAttributes({ plainTextContent: newPlainTextContent })}
+					onChange={(newPlainTextContent) =>
+						setAttributes({ plainTextContent: newPlainTextContent })
+					}
 					placeholder={__("Type plain text here...", "cb-my-block")}
 				/>
 			</p>
 			<div>
 				<RichText
-					{...useBlockProps} 
+					{...useBlockProps}
 					style={{ fontSize: type }}
-					tagName="h2" 
-					value={richTextContent} 
-					allowedFormats={["core/bold", "core/italic"]} 
-					onChange={(newRichTextContent) => setAttributes({ richTextContent: newRichTextContent })} 
-					placeholder={__("Heading...")} 
+					tagName="h2"
+					value={richTextContent}
+					allowedFormats={["core/bold", "core/italic"]}
+					onChange={(newRichTextContent) =>
+						setAttributes({ richTextContent: newRichTextContent })
+					}
+					placeholder={__("Heading...")}
 				/>
+				<figure className={`default ${className}`}>
+					<img src={src} alt={alt} />
+					<MediaUploadCheck>
+						<MediaUpload
+							onSelect={(media) => {
+								console.log(media);
+								setAttributes({
+									id: media.id,
+									src:(media.sizes.thumbnail) ? media.sizes.thumbnail.url : media.url,
+									alt: media.alt,
+							 	});
+							}}
+							allowedTypes={ALLOWED_MEDIA_TYPES}
+							value={id}
+							render={({ open }) => (
+								<IconButton
+									icon="format-image"
+									label={ (id || src) ? __("Replace Image", "cb-my-block") : __("Upload Image", "cb-my-block") }
+									onClick={open}
+								/>
+							)}
+						/>
+					</MediaUploadCheck>
+				</figure>
 			</div>
 		</Fragment>
 	);

@@ -72,6 +72,16 @@
     },
     "type": {
       "type": "string"
+    },
+    "id": {
+      "type": "integer",
+      "default": 0
+    },
+    "src": {
+      "type": "string"
+    },
+    "alt": {
+      "type": "string"
     }
   }
 }

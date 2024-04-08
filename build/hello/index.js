@@ -41,6 +41,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+const ALLOWED_MEDIA_TYPES = ["image"];
 function Edit({
   className,
   attributes,
@@ -50,10 +51,13 @@ function Edit({
   const {
     plainTextContent,
     richTextContent,
-    type
+    type,
+    id,
+    src,
+    alt
   } = attributes;
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.InspectorControls, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.PanelBody, {
-    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Settings", "cb-my-block"),
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Font Settings", "cb-my-block"),
     initialOpen: true
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.SelectControl, {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Select", "cb-my-block"),
@@ -110,7 +114,30 @@ function Edit({
       richTextContent: newRichTextContent
     }),
     placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Heading...")
-  })));
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("figure", {
+    className: `default ${className}`
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
+    src: src,
+    alt: alt
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.MediaUploadCheck, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.MediaUpload, {
+    onSelect: media => {
+      console.log(media);
+      setAttributes({
+        id: media.id,
+        src: media.sizes.thumbnail ? media.sizes.thumbnail.url : media.url,
+        alt: media.alt
+      });
+    },
+    allowedTypes: ALLOWED_MEDIA_TYPES,
+    value: id,
+    render: ({
+      open
+    }) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.IconButton, {
+      icon: "format-image",
+      label: id || src ? (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Replace Image", "cb-my-block") : (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Upload Image", "cb-my-block"),
+      onClick: open
+    })
+  })))));
 }
 
 /***/ }),
@@ -228,7 +255,10 @@ function save({
   const {
     plainTextContent,
     richTextContent,
-    type
+    type,
+    id,
+    src,
+    alt
   } = attributes;
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     ..._wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps.save()
@@ -238,7 +268,10 @@ function save({
       fontSize: type
     },
     value: richTextContent
-  }));
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("figure", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
+    src: src,
+    alt: alt ? alt : ''
+  })));
 }
 
 /***/ }),
@@ -333,7 +366,7 @@ module.exports = window["wp"]["i18n"];
   \******************************/
 /***/ ((module) => {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"create-block/hello","version":"0.1.0","title":"CB Hello","category":"widgets","description":"Example block scaffolded with Create Block tool.","example":{},"supports":{"html":true,"color":{"text":true,"link":true,"background":true}},"styles":[{"name":"red","label":"Red","isDefault":true},{"name":"green-amar","label":"Green"},{"name":"blue","label":"Blue"},{"name":"yellow","label":"Yellow"},{"name":"purple","label":"Purple"},{"name":"pink","label":"Pink"},{"name":"orange","label":"Orange"}],"textdomain":"cb-my-block","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","viewScript":"file:./view.js","attributes":{"content":{"type":"string","default":""},"style":{"type":"string","default":"red"},"plainTextContent":{"type":"string","source":"text","selector":"p"},"richTextContent":{"type":"string","source":"html","selector":"h2"},"type":{"type":"string"}}}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"create-block/hello","version":"0.1.0","title":"CB Hello","category":"widgets","description":"Example block scaffolded with Create Block tool.","example":{},"supports":{"html":true,"color":{"text":true,"link":true,"background":true}},"styles":[{"name":"red","label":"Red","isDefault":true},{"name":"green-amar","label":"Green"},{"name":"blue","label":"Blue"},{"name":"yellow","label":"Yellow"},{"name":"purple","label":"Purple"},{"name":"pink","label":"Pink"},{"name":"orange","label":"Orange"}],"textdomain":"cb-my-block","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","viewScript":"file:./view.js","attributes":{"content":{"type":"string","default":""},"style":{"type":"string","default":"red"},"plainTextContent":{"type":"string","source":"text","selector":"p"},"richTextContent":{"type":"string","source":"html","selector":"h2"},"type":{"type":"string"},"id":{"type":"integer","default":0},"src":{"type":"string"},"alt":{"type":"string"}}}');
 
 /***/ })
 

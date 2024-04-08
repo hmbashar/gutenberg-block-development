@@ -16,11 +16,16 @@ import { useBlockProps, RichText } from "@wordpress/block-editor";
  * @return {Element} Element to render.
  */
 export default function save({ attributes }) {
-	const { plainTextContent, richTextContent, type } = attributes;
+	const { plainTextContent, richTextContent, type, id, src, alt } = attributes;
 	return (
 		<div {...useBlockProps.save()}>
 			<p>{plainTextContent}</p>
 			<RichText.Content tagName="h2" style={{ fontSize: type }} value={richTextContent} />
+			
+                <figure>
+                    <img src={src} alt={alt ? alt : ''} />
+                </figure>
+            
 		</div>
 	);
 }
