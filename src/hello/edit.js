@@ -15,6 +15,7 @@ import {
 	useBlockProps,
 	BlockControls,
 	PlainText,
+	RichText,
 } from "@wordpress/block-editor";
 import { Fragment } from "@wordpress/element";
 import { ToolbarButton, ToolbarGroup } from "@wordpress/components";
@@ -35,8 +36,13 @@ import "./editor.scss";
  *
  * @return {Element} Element to render.
  */
-export default function Edit({ className, attributes, setAttributes }) {
-	const { content } = attributes;
+export default function Edit({
+	className,
+	attributes,
+	setAttributes,
+	isSelected,
+}) {
+	const { plainTextContent, richTextContent } = attributes;
 	return (
 		<Fragment>
 			<BlockControls>
@@ -67,13 +73,24 @@ export default function Edit({ className, attributes, setAttributes }) {
 			</BlockControls>
 			<p {...useBlockProps()}>
 				{__("Cb Hello Block – hello from the editor!", "cb-my-block")}
+
+				<PlainText
+					{...useBlockProps()}
+					value={plainTextContent}
+					onChange={(newPlainTextContent) => setAttributes({ plainTextContent: newPlainTextContent })}
+					placeholder={__("Type plain text here...", "cb-my-block")}
+				/>
 			</p>
-			<PlainText
-				{...useBlockProps()}
-				value={content} 
-				onChange={(newContent) => setAttributes({ content: newContent })} 
-				placeholder={__("Type here...", "cb-my-block")} 
-			/>
+			<p>
+				<RichText
+					{...useBlockProps}
+					tagName="h2" 
+					value={richTextContent} 
+					allowedFormats={["core/bold", "core/italic"]} 
+					onChange={(newRichTextContent) => setAttributes({ richTextContent: newRichTextContent })} 
+					placeholder={__("Heading...")} 
+				/>
+			</p>
 		</Fragment>
 	);
 }

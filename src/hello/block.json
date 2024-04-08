@@ -59,7 +59,17 @@
 		"style":{
 			"type": "string",
 			"default": "red"
-		}
+		},
+		"plainTextContent": {
+			"type": "string",
+			"source": "text",
+			"selector": "p"
+		  },
+		  "richTextContent": {
+			"type": "string",
+			"source": "html",
+			"selector": "h2"
+		  }
 		
 	}
 }
