@@ -16,35 +16,36 @@ import {
 	BlockControls,
 	PlainText,
 	RichText,
+	InspectorControls
 } from "@wordpress/block-editor";
 import { Fragment } from "@wordpress/element";
-import { ToolbarButton, ToolbarGroup } from "@wordpress/components";
-
-/**
- * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
- * Those files can contain any CSS code that gets applied to the editor.
- *
- * @see https://www.npmjs.com/package/@wordpress/scripts#using-css
- */
+import { ToolbarButton, ToolbarGroup, PanelBody, SelectControl } from "@wordpress/components"; 
 import "./editor.scss";
 
-/**
- * The edit function describes the structure of your block in the context of the
- * editor. This represents what the editor will render when the block is used.
- *
- * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-edit-save/#edit
- *
- * @return {Element} Element to render.
- */
+
 export default function Edit({
 	className,
 	attributes,
 	setAttributes,
 	isSelected,
 }) {
-	const { plainTextContent, richTextContent } = attributes;
+	const { plainTextContent, richTextContent,type } = attributes;
 	return (
 		<Fragment>
+			<InspectorControls>
+				<PanelBody title={__("Settings", "cb-my-block")} initialOpen={true}>
+					<SelectControl 
+						label={__("Select", "cb-my-block")}
+						value={type}
+						options={[
+							{ label: "Small", value: "25%" },
+							{ label: "Medium", value: "50%" },
+							{ label: "Large", value: "100%" },													
+						]}
+						onChange={(type) => { setAttributes( { type } ) }}
+					/>
+				</PanelBody>
+			</InspectorControls>
 			<BlockControls>
 				<ToolbarGroup>
 					<ToolbarButton
@@ -81,16 +82,17 @@ export default function Edit({
 					placeholder={__("Type plain text here...", "cb-my-block")}
 				/>
 			</p>
-			<p>
+			<div>
 				<RichText
-					{...useBlockProps}
+					{...useBlockProps} 
+					style={{ fontSize: type }}
 					tagName="h2" 
 					value={richTextContent} 
 					allowedFormats={["core/bold", "core/italic"]} 
 					onChange={(newRichTextContent) => setAttributes({ richTextContent: newRichTextContent })} 
 					placeholder={__("Heading...")} 
 				/>
-			</p>
+			</div>
 		</Fragment>
 	);
 }

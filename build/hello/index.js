@@ -41,22 +41,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-/**
- * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
- * Those files can contain any CSS code that gets applied to the editor.
- *
- * @see https://www.npmjs.com/package/@wordpress/scripts#using-css
- */
-
-
-/**
- * The edit function describes the structure of your block in the context of the
- * editor. This represents what the editor will render when the block is used.
- *
- * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-edit-save/#edit
- *
- * @return {Element} Element to render.
- */
 function Edit({
   className,
   attributes,
@@ -65,9 +49,31 @@ function Edit({
 }) {
   const {
     plainTextContent,
-    richTextContent
+    richTextContent,
+    type
   } = attributes;
-  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.BlockControls, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.ToolbarGroup, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.ToolbarButton, {
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.InspectorControls, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.PanelBody, {
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Settings", "cb-my-block"),
+    initialOpen: true
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.SelectControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Select", "cb-my-block"),
+    value: type,
+    options: [{
+      label: "Small",
+      value: "25%"
+    }, {
+      label: "Medium",
+      value: "50%"
+    }, {
+      label: "Large",
+      value: "100%"
+    }],
+    onChange: type => {
+      setAttributes({
+        type
+      });
+    }
+  }))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.BlockControls, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.ToolbarGroup, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.ToolbarButton, {
     icon: "edit",
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Edit", "cb-my-block"),
     onClick: () => console.log("edit")
@@ -92,8 +98,11 @@ function Edit({
       plainTextContent: newPlainTextContent
     }),
     placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Type plain text here...", "cb-my-block")
-  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
+  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
     ..._wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps,
+    style: {
+      fontSize: type
+    },
     tagName: "h2",
     value: richTextContent,
     allowedFormats: ["core/bold", "core/italic"],
@@ -218,12 +227,16 @@ function save({
 }) {
   const {
     plainTextContent,
-    richTextContent
+    richTextContent,
+    type
   } = attributes;
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     ..._wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps.save()
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, plainTextContent), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText.Content, {
     tagName: "h2",
+    style: {
+      fontSize: type
+    },
     value: richTextContent
   }));
 }
@@ -320,7 +333,7 @@ module.exports = window["wp"]["i18n"];
   \******************************/
 /***/ ((module) => {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"create-block/hello","version":"0.1.0","title":"CB Hello","category":"widgets","description":"Example block scaffolded with Create Block tool.","example":{},"supports":{"html":true,"color":{"text":true,"link":true,"background":true}},"styles":[{"name":"red","label":"Red","isDefault":true},{"name":"green-amar","label":"Green"},{"name":"blue","label":"Blue"},{"name":"yellow","label":"Yellow"},{"name":"purple","label":"Purple"},{"name":"pink","label":"Pink"},{"name":"orange","label":"Orange"}],"textdomain":"cb-my-block","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","viewScript":"file:./view.js","attributes":{"content":{"type":"string","default":""},"style":{"type":"string","default":"red"},"plainTextContent":{"type":"string","source":"text","selector":"p"},"richTextContent":{"type":"string","source":"html","selector":"h2"}}}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"create-block/hello","version":"0.1.0","title":"CB Hello","category":"widgets","description":"Example block scaffolded with Create Block tool.","example":{},"supports":{"html":true,"color":{"text":true,"link":true,"background":true}},"styles":[{"name":"red","label":"Red","isDefault":true},{"name":"green-amar","label":"Green"},{"name":"blue","label":"Blue"},{"name":"yellow","label":"Yellow"},{"name":"purple","label":"Purple"},{"name":"pink","label":"Pink"},{"name":"orange","label":"Orange"}],"textdomain":"cb-my-block","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","viewScript":"file:./view.js","attributes":{"content":{"type":"string","default":""},"style":{"type":"string","default":"red"},"plainTextContent":{"type":"string","source":"text","selector":"p"},"richTextContent":{"type":"string","source":"html","selector":"h2"},"type":{"type":"string"}}}');
 
 /***/ })
 

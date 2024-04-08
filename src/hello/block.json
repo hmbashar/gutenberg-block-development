@@ -4,7 +4,7 @@
 	"name": "create-block/hello",
 	"version": "0.1.0",
 	"title": "CB Hello",
-	"category": "widgets",	
+	"category": "widgets",
 	"description": "Example block scaffolded with Create Block tool.",
 	"example": {},
 	"supports": {
@@ -51,12 +51,12 @@
 	"editorStyle": "file:./index.css",
 	"style": "file:./style-index.css",
 	"viewScript": "file:./view.js",
-	"attributes": {		
+	"attributes": {
 		"content": {
 			"type": "string",
 			"default": ""
 		},
-		"style":{
+		"style": {
 			"type": "string",
 			"default": "red"
 		},
@@ -64,12 +64,14 @@
 			"type": "string",
 			"source": "text",
 			"selector": "p"
-		  },
-		  "richTextContent": {
+		},
+		"richTextContent": {
 			"type": "string",
 			"source": "html",
 			"selector": "h2"
-		  }
-		
+		},
+		"type": {
+			"type": "string"
+		}
 	}
 }
