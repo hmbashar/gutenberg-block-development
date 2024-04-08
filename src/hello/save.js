@@ -16,9 +16,9 @@ import { useBlockProps, RichText } from "@wordpress/block-editor";
  * @return {Element} Element to render.
  */
 export default function save({ attributes }) {
-	const { plainTextContent, richTextContent, type, id, src, alt } = attributes;
+	const { plainTextContent, richTextContent, type, id, src, alt, textAlign } = attributes;
 	return (
-		<div {...useBlockProps.save()}>
+		<div {...useBlockProps.save()} style={{ textAlign: textAlign }}>
 			<p>{plainTextContent}</p>
 			<RichText.Content tagName="h2" style={{ fontSize: type }} value={richTextContent} />
 			
