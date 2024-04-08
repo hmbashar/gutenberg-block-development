@@ -54,7 +54,8 @@ function Edit({
     type,
     id,
     src,
-    alt
+    alt,
+    textAlign
   } = attributes;
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.InspectorControls, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.PanelBody, {
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Font Settings", "cb-my-block"),
@@ -77,7 +78,14 @@ function Edit({
         type
       });
     }
-  }))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.BlockControls, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.ToolbarGroup, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.ToolbarButton, {
+  }))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.BlockControls, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.AlignmentControl, {
+    value: textAlign,
+    onChange: nextAlign => {
+      setAttributes({
+        textAlign: nextAlign
+      });
+    }
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.ToolbarGroup, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.ToolbarButton, {
     icon: "edit",
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Edit", "cb-my-block"),
     onClick: () => console.log("edit")
@@ -366,7 +374,7 @@ module.exports = window["wp"]["i18n"];
   \******************************/
 /***/ ((module) => {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"create-block/hello","version":"0.1.0","title":"CB Hello","category":"widgets","description":"Example block scaffolded with Create Block tool.","example":{},"supports":{"html":true,"color":{"text":true,"link":true,"background":true}},"styles":[{"name":"red","label":"Red","isDefault":true},{"name":"green-amar","label":"Green"},{"name":"blue","label":"Blue"},{"name":"yellow","label":"Yellow"},{"name":"purple","label":"Purple"},{"name":"pink","label":"Pink"},{"name":"orange","label":"Orange"}],"textdomain":"cb-my-block","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","viewScript":"file:./view.js","attributes":{"content":{"type":"string","default":""},"style":{"type":"string","default":"red"},"plainTextContent":{"type":"string","source":"text","selector":"p"},"richTextContent":{"type":"string","source":"html","selector":"h2"},"type":{"type":"string"},"id":{"type":"integer","default":0},"src":{"type":"string"},"alt":{"type":"string"}}}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"create-block/hello","version":"0.1.0","title":"CB Hello","category":"widgets","description":"Example block scaffolded with Create Block tool.","example":{},"supports":{"html":true,"color":{"text":true,"link":true,"background":true},"align":true},"styles":[{"name":"red","label":"Red","isDefault":true},{"name":"green-amar","label":"Green"},{"name":"blue","label":"Blue"},{"name":"yellow","label":"Yellow"},{"name":"purple","label":"Purple"},{"name":"pink","label":"Pink"},{"name":"orange","label":"Orange"}],"textdomain":"cb-my-block","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","viewScript":"file:./view.js","attributes":{"content":{"type":"string","default":""},"style":{"type":"string","default":"red"},"plainTextContent":{"type":"string","source":"text","selector":"p"},"richTextContent":{"type":"string","source":"html","selector":"h2"},"type":{"type":"string"},"id":{"type":"integer","default":0},"src":{"type":"string"},"alt":{"type":"string"},"textAlign":{"type":"string","default":"left"}}}');
 
 /***/ })
 

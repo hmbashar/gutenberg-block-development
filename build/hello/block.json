@@ -13,7 +13,8 @@
       "text": true,
       "link": true,
       "background": true
-    }
+    },
+    "align": true
   },
   "styles": [
     {
@@ -82,6 +83,10 @@
     },
     "alt": {
       "type": "string"
+    },
+    "textAlign": {
+      "type": "string",
+      "default": "left"
     }
   }
 }

@@ -19,6 +19,7 @@ import {
 	InspectorControls,
 	MediaUpload,
 	MediaUploadCheck,
+	AlignmentControl
 } from "@wordpress/block-editor";
 import { Fragment } from "@wordpress/element";
 import {
@@ -38,7 +39,7 @@ export default function Edit({
 	setAttributes,
 	isSelected,
 }) {
-	const { plainTextContent, richTextContent, type, id, src, alt } = attributes;
+	const { plainTextContent, richTextContent, type, id, src, alt, textAlign } = attributes;
 	return (
 		<Fragment>
 			<InspectorControls>
@@ -61,6 +62,12 @@ export default function Edit({
 				</PanelBody>
 			</InspectorControls>
 			<BlockControls>
+				<AlignmentControl
+					value={textAlign}
+					onChange={(nextAlign) => {
+						setAttributes({ textAlign: nextAlign });
+					}}
+				/>
 				<ToolbarGroup>
 					<ToolbarButton
 						icon="edit"
@@ -118,16 +125,22 @@ export default function Edit({
 								console.log(media);
 								setAttributes({
 									id: media.id,
-									src:(media.sizes.thumbnail) ? media.sizes.thumbnail.url : media.url,
+									src: media.sizes.thumbnail
+										? media.sizes.thumbnail.url
+										: media.url,
 									alt: media.alt,
-							 	});
+								});
 							}}
 							allowedTypes={ALLOWED_MEDIA_TYPES}
 							value={id}
 							render={({ open }) => (
 								<IconButton
 									icon="format-image"
-									label={ (id || src) ? __("Replace Image", "cb-my-block") : __("Upload Image", "cb-my-block") }
+									label={
+										id || src
+											? __("Replace Image", "cb-my-block")
+											: __("Upload Image", "cb-my-block")
+									}
 									onClick={open}
 								/>
 							)}
